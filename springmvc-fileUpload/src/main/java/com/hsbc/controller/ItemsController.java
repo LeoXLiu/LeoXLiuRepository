@@ -21,6 +21,7 @@ public class ItemsController {
 		String path = "F:\\upload\\" + filename;
 		String url = request.getSession().getServletContext().getRealPath("")+path;
 		file.transferTo(new File(path));
+		// 冲突修改
 		JSONObject jsonObject = new JSONObject();
 		jsonObject.put("url",path );
 		response.setContentType("text/html;charset = utf-8");
