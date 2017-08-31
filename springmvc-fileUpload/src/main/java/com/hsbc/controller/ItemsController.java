@@ -19,7 +19,7 @@ public class ItemsController {
 		String filename = file.getOriginalFilename();
 		//相对路径
 		String path = "F:\\upload\\" + filename;
-		String url = request.getSession().getServletContext().getRealPath("")+path;
+		// String url = request.getSession().getServletContext().getRealPath("")+path;
 		file.transferTo(new File(path));
 		// 冲突修改
 		JSONObject jsonObject = new JSONObject();
