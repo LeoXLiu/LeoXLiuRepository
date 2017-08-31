@@ -22,12 +22,12 @@
                 dataType: 'text',//返回值类型 一般设置为json
                 success: function (data, status)  //服务器成功响应处理函数
                 {
+                	alert("上传成功");
                 	var str=eval('('+data+')');
-                	alert(str.url);
                 },
                 error: function (data, status, e)//服务器响应失败处理函数
                 {
-                    alert(e);
+                    alert("上传文件格式有误");
                 }
             });
         return false;
