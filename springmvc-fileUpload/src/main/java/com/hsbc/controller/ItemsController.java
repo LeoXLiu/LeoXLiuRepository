@@ -18,11 +18,11 @@ public class ItemsController {
 	public void upload(@RequestParam("file") MultipartFile file,HttpServletRequest request,HttpServletResponse response) throws Exception{
 		String filename = file.getOriginalFilename();
 		//相对路径
-		String path = "\\upload\\" + filename;
-		String url = request.getSession().getServletContext().getRealPath("")+path;
-		file.transferTo(new File(url));
+		String path = "F:\\upload\\" + filename;
+		// String url = request.getSession().getServletContext().getRealPath("")+path;
+		file.transferTo(new File(path));
 		JSONObject jsonObject = new JSONObject();
-		jsonObject.put("url",url );
+		jsonObject.put("url",path );
 		response.setContentType("text/html;charset = utf-8");
 		response.getWriter().write(jsonObject.toString());
 	}
