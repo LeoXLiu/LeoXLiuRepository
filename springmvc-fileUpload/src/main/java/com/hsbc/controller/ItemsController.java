@@ -16,16 +16,23 @@ public class ItemsController {
 	
 	@RequestMapping("upload.shtml")
 	public void upload(@RequestParam("file") MultipartFile file,HttpServletRequest request,HttpServletResponse response) throws Exception{
-		String filename = file.getOriginalFilename();
-		//相对路径
-		String path = "F:\\upload\\" + filename;
-	    //String url = request.getSession().getServletContext().getRealPath("")+path;
-		file.transferTo(new File(path));
-		// 冲突修改
-		JSONObject jsonObject = new JSONObject();
-		jsonObject.put("url",path );
-		response.setContentType("text/html;charset = utf-8");
-		response.getWriter().write(jsonObject.toString());
+		if(!file.isEmpty()){
+			String filename = file.getOriginalFilename();
+			String prefix = filename.substring(filename.lastIndexOf(".")+1);
+			String[] admitPrefixs={"doc","pdf","docx"};
+			for (String admitPrefix : admitPrefixs) {
+				if(prefix.equals(admitPrefix)){
+					String path = "F:\\upload\\" + filename;
+					//相对路径
+					//String url = request.getSession().getServletContext().getRealPath("")+path;
+					file.transferTo(new File(path));
+					JSONObject jsonObject = new JSONObject();
+					jsonObject.put("url",path );
+					response.setContentType("text/html;charset = utf-8");
+					response.getWriter().write(jsonObject.toString());	
+				}
+			}
+		}
 	}
 	
 }
